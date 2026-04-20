@@ -9,6 +9,9 @@ package bitpack
 import "math"
 
 // Array is a packed array of fixed-width bit sequences.
+//
+// Multiple goroutines may read from an Array concurrently, but writes
+// must be synchronized with all other accesses.
 type Array struct {
 	data  []uint64
 	width uint
