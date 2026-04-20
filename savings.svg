@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="-apple-system, BlinkMacSystemFont, system-ui, sans-serif">
   <style>
-    .title { font-size: 18px; font-weight: 600; fill: #1F2328; }
-    .subtitle { font-size: 13px; fill: #656D76; }
-    .axis-line { stroke: #656D76; stroke-width: 1; fill: none; }
-    .grid { stroke: #D0D7DE; stroke-width: 1; stroke-dasharray: 3 3; }
-    .tick-label { font-size: 12px; fill: #656D76; }
-    .axis-title { font-size: 13px; fill: #656D76; font-weight: 500; }
+    .title { font-size: 18px; font-weight: 600; fill: #57606A; }
+    .subtitle { font-size: 13px; fill: #6E7681; }
+    .axis-line { stroke: #8B949E; stroke-width: 1; fill: none; }
+    .grid { stroke: #8B949E; stroke-width: 1; stroke-dasharray: 3 3; stroke-opacity: 0.4; }
+    .tick-label { font-size: 12px; fill: #6E7681; }
+    .axis-title { font-size: 13px; fill: #6E7681; font-weight: 500; }
     .curve { stroke: #00ADD8; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     .dot { fill: #00ADD8; }
-    .annot { font-size: 12px; fill: #1F2328; }
+    .annot { font-size: 12px; fill: #57606A; }
     @media (prefers-color-scheme: dark) {
-      .title, .annot { fill: #E6EDF3; }
-      .subtitle, .tick-label, .axis-title { fill: #8D96A0; }
-      .axis-line { stroke: #8D96A0; }
-      .grid { stroke: #30363D; }
+      .title, .annot { fill: #F0F6FC; }
+      .subtitle, .tick-label, .axis-title { fill: #B1BAC4; }
+      .axis-line { stroke: #B1BAC4; }
     }
   </style>
 
