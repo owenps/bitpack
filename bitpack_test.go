@@ -1,6 +1,10 @@
 package bitpack
 
-import "testing"
+import (
+	"math"
+	"strings"
+	"testing"
+)
 
 func TestSetAndAt(t *testing.T) {
 	a := New(5, 3) // 5 elements, 3-bit values (max value = 7)
@@ -82,4 +86,42 @@ func TestCrossingWordBoundary(t *testing.T) {
 			t.Errorf("Get(%d) = %d, want %d", i, got, want)
 		}
 	}
+}
+
+func TestCrossSlotBitPatterns(t *testing.T) {
+	// Index 12 at width 5 straddles slots 0 and 1. Patterns are chosen so
+	// the low and high halves of the value are distinguishable.
+	a := New(20, 5)
+	const straddle = 12
+
+	patterns := []uint64{
+		0b00000,
+		0b11111,
+		0b10000,
+		0b00001,
+		0b10101,
+		0b01010,
+	}
+
+	for _, v := range patterns {
+		a.Set(straddle, v)
+		if got := a.At(straddle); got != v {
+			t.Errorf("At(%d) after Set(%d, %05b) = %05b, want %05b",
+				straddle, straddle, v, got, v)
+		}
+	}
+}
+
+func TestNewPanicsOnSizeOverflow(t *testing.T) {
+	defer func() {
+		r := recover()
+		if r == nil {
+			t.Fatal("New(math.MaxInt, 64) did not panic")
+		}
+		msg, ok := r.(string)
+		if !ok || !strings.HasPrefix(msg, "bitpack:") {
+			t.Errorf("panic = %v, want bitpack:-prefixed string", r)
+		}
+	}()
+	New(math.MaxInt, 64)
 }

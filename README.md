@@ -50,7 +50,7 @@ go get github.com/owenps/bitpack
 ## Road Map
 
 - [ ] `FromSlice()` method - automatically calculate the width from a slice.
-- [ ] Generics support - support other envelopes other than (`uint8`, `uint32`, `uint`)
+- [ ] Generics support - support other envelopes other than `uint64` (`uint8`, `uint32`, `uint`)
 
 ## License
 
