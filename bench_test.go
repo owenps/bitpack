@@ -50,6 +50,35 @@ func BenchmarkAt(b *testing.B) {
 	}
 }
 
+// BenchmarkFillVsSetLoop compares Fill to the naive equivalent (calling
+// Set in a loop). One op = filling the entire benchN-element array.
+func BenchmarkFillVsSetLoop(b *testing.B) {
+	for _, w := range benchWidths {
+		v := uint64(1)<<w - 1
+		if w == 64 {
+			v = ^uint64(0)
+		}
+
+		b.Run("Fill/"+name(w), func(b *testing.B) {
+			a := bitpack.New(benchN, w)
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				a.Fill(v)
+			}
+		})
+
+		b.Run("SetLoop/"+name(w), func(b *testing.B) {
+			a := bitpack.New(benchN, w)
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				for j := 0; j < benchN; j++ {
+					a.Set(j, v)
+				}
+			}
+		})
+	}
+}
+
 func name(width int) string {
 	switch width {
 	case 3:

@@ -127,3 +127,19 @@ func TestNewPanicsOnSizeOverflow(t *testing.T) {
 	}()
 	bitpack.New(math.MaxInt, 64)
 }
+
+func TestFill(t *testing.T) {
+	a := bitpack.New(10, 3)
+	a.Fill(7)
+	for i := range 10 {
+		if a.At(i) != 7 {
+			t.Errorf("At(%d) = %d, want 7", i, a.At(i))
+		}
+	}
+	a.Fill(0)
+	for i := range 10 {
+		if a.At(i) != 0 {
+			t.Errorf("At(%d) = %d, want 0", i, a.At(i))
+		}
+	}
+}

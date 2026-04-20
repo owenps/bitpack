@@ -105,6 +105,24 @@ func (a *Array) At(i int) uint64 {
 	return (loBits | hiBits) & a.mask
 }
 
+// Fill sets all elements in the array to the given value.
+//
+// Fill panics if the value exceeds the bit width.
+func (a *Array) Fill(value uint64) {
+	if value>>a.width != 0 {
+		panic("bitpack: value exceeds the bit width.")
+	}
+
+	if a.width == 0 {
+		return
+	}
+
+	// Temporary implementation; can be optimized.
+	for i := range a.Len() {
+		a.Set(i, value)
+	}
+}
+
 // Len returns the number of elements in the array.
 func (a *Array) Len() int {
 	return a.size

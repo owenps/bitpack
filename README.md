@@ -59,7 +59,11 @@ go get github.com/owenps/bitpack
 ## Road Map
 
 - [ ] `FromSlice()` method - automatically calculate the width from a slice.
-- [ ] Generics support - support other envelopes other than `uint64` (`uint8`, `uint32`, `uint`)
+- [ ] `ToSlice()` method - mirrors `FromSlice()`.
+- [ ] Generics support - support other envelopes other than `uint64`. (`uint8`, `uint32`, `uint`)
+- [ ] `Fill()` method optimizations - fill the entire array from a value. Can gain significant performance boosts over using a for-loop with `Set()`.
+- [ ] `SetRange()` method - set a range of indices to a given value.
+- [ ] `Iter()` method - return an iterator that can hold the current slot in a register and decode multiple values from it before reloading. Can offer significant speed-ups to using for-loop with `At`.
 
 ## License
 
