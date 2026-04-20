@@ -1,5 +1,10 @@
 # BitPack ⚡︎
 
+![github.com/owenps/bitpack/actions/workflows/test.yml/badge.svg](https://github.com/owenps/bitpack/actions/workflows/test.yml/badge.svg)
+![pkg.go.dev/badge/github.com/owenps/bitpack.svg](https://pkg.go.dev/badge/github.com/owenps/bitpack.svg)
+![goreportcard.com/badge/github.com/owenps/bitpack](https://goreportcard.com/badge/github.com/owenps/bitpack)
+![img.shields.io/github/license/owenps/bitpack](https://img.shields.io/github/license/owenps/bitpack)
+
 A miniature GO library for compact arrays.
 
 > [!NOTE]
