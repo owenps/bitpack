@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="-apple-system, BlinkMacSystemFont, system-ui, sans-serif">
+  <style>
+    .title { font-size: 18px; font-weight: 600; fill: #1F2328; }
+    .subtitle { font-size: 13px; fill: #656D76; }
+    .axis-line { stroke: #656D76; stroke-width: 1; fill: none; }
+    .grid { stroke: #D0D7DE; stroke-width: 1; stroke-dasharray: 3 3; }
+    .tick-label { font-size: 12px; fill: #656D76; }
+    .axis-title { font-size: 13px; fill: #656D76; font-weight: 500; }
+    .curve { stroke: #00ADD8; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .dot { fill: #00ADD8; }
+    .annot { font-size: 12px; fill: #1F2328; }
+    @media (prefers-color-scheme: dark) {
+      .title, .annot { fill: #E6EDF3; }
+      .subtitle, .tick-label, .axis-title { fill: #8D96A0; }
+      .axis-line { stroke: #8D96A0; }
+      .grid { stroke: #30363D; }
+    }
+  </style>
+
+  <text class="title" x="400" y="32" text-anchor="middle">Memory savings vs []uint64</text>
+  <text class="subtitle" x="400" y="52" text-anchor="middle">Savings multiplier ≈ 64 / bit width</text>
+
+  <line class="grid" x1="60" y1="80" x2="760" y2="80" />
+  <line class="grid" x1="60" y1="232.4" x2="760" y2="232.4" />
+  <line class="grid" x1="60" y1="308.6" x2="760" y2="308.6" />
+  <line class="grid" x1="60" y1="346.7" x2="760" y2="346.7" />
+
+  <line class="axis-line" x1="60" y1="380" x2="760" y2="380" />
+  <line class="axis-line" x1="60" y1="80" x2="60" y2="380" />
+
+  <text class="tick-label" x="52" y="84" text-anchor="end">64×</text>
+  <text class="tick-label" x="52" y="236" text-anchor="end">32×</text>
+  <text class="tick-label" x="52" y="312" text-anchor="end">16×</text>
+  <text class="tick-label" x="52" y="350" text-anchor="end">8×</text>
+  <text class="tick-label" x="52" y="384" text-anchor="end">1×</text>
+
+  <text class="tick-label" x="60" y="400" text-anchor="middle">1</text>
+  <text class="tick-label" x="137.8" y="400" text-anchor="middle">8</text>
+  <text class="tick-label" x="226.7" y="400" text-anchor="middle">16</text>
+  <text class="tick-label" x="404.4" y="400" text-anchor="middle">32</text>
+  <text class="tick-label" x="760" y="400" text-anchor="middle">64</text>
+
+  <text class="axis-title" x="410" y="425" text-anchor="middle">Bit width</text>
+
+  <path class="curve" d="M 60 80 L 65.6 181.6 L 71.1 232.4 L 76.7 262.9 L 82.2 283.2 L 93.3 308.6 L 104.4 323.8 L 115.6 334.0 L 137.8 346.7 L 160 354.3 L 182.2 359.4 L 226.7 365.7 L 271.1 369.5 L 315.6 372.1 L 404.4 375.2 L 493.3 377.1 L 582.2 378.4 L 671.1 379.3 L 760 380" />
+
+  <circle class="dot" cx="82.2" cy="283.2" r="4" />
+  <text class="annot" x="92" y="275">width=3 → 21×</text>
+
+  <circle class="dot" cx="137.8" cy="346.7" r="4" />
+  <text class="annot" x="148" y="340">width=8 → 8×</text>
+
+  <circle class="dot" cx="226.7" cy="365.7" r="4" />
+  <text class="annot" x="236" y="360">width=16 → 4×</text>
+
+  <circle class="dot" cx="404.4" cy="375.2" r="4" />
+  <text class="annot" x="414" y="370">width=32 → 2×</text>
+</svg>

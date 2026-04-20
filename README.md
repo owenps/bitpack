@@ -40,6 +40,8 @@ stored 1000 values in 376 bytes
 
 For more examples see [example_test.go](/example_test.go)
 
+![Memory savings by bit width](savings.svg)
+
 ## Benchmarks
 
 All operations run in constant time with zero allocations.
