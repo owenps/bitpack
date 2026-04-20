@@ -1,4 +1,4 @@
-# BitPack ⚡︎
+# bitpack ⚡︎
 
 [![CI](https://github.com/owenps/bitpack/actions/workflows/test.yml/badge.svg)](https://github.com/owenps/bitpack/actions/workflows/test.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/owenps/bitpack.svg)](https://pkg.go.dev/github.com/owenps/bitpack)
@@ -21,7 +21,7 @@ import (
 )
 
 func main() {
-	a := bitpack.New(1000, 3)  // 1000 elements, 3 bits per element.
+	a := bitpack.New(1000, 3) // 1000 elements, 3 bits per element.
 
 	for i := range a.Len() {
 		a.Set(i, uint64(i%8)) // Set value from [0, 7]
