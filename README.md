@@ -1,6 +1,7 @@
 # bitpack ⚡︎
 
 [![CI](https://github.com/owenps/bitpack/actions/workflows/test.yml/badge.svg)](https://github.com/owenps/bitpack/actions/workflows/test.yml)
+[![Version](https://img.shields.io/github/v/release/owenps/bitpack)](https://github.com/owenps/bitpack/releases)
 [![Go Reference](https://pkg.go.dev/badge/github.com/owenps/bitpack.svg)](https://pkg.go.dev/github.com/owenps/bitpack)
 [![Go Report Card](https://goreportcard.com/badge/github.com/owenps/bitpack)](https://goreportcard.com/report/github.com/owenps/bitpack)
 [![License](https://img.shields.io/github/license/owenps/bitpack)](/LICENSE)
