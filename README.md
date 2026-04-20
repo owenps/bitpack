@@ -25,7 +25,7 @@ func main() {
 	a := bitpack.New(1000, 3) // 1000 elements, 3 bits per element.
 
 	for i := range a.Len() {
-		a.Set(i, uint64(i%8)) // Set value from [0, 7]
+		a.Set(i, uint64(i%8)) // Set value within [0, 7]
 	}
 
 	fmt.Printf("stored %d values in %d bytes\n", a.Len(), a.Size())
