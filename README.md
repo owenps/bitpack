@@ -13,20 +13,28 @@ A miniature GO library for compact arrays.
 ## Usage
 
 ```go
-import "github.com/owenps/bitpack"
+package main
 
-x := uint64{0, 6, 1, 6} // largest value is 6 (bit width of 3). 
+import (
+	"fmt"
+	"github.com/owenps/bitpack"
+)
 
-y := bitpack.New(4, 3)  // 4 elements, 3 bits per element.
+func main() {
+	a := bitpack.New(1000, 3)  // 1000 elements, 3 bits per element.
 
-y.Set(0, 0)
-y.Set(1, 6)
-y.Set(2, 1)
-y.Set(3, 6)
+	for i := range a.Len() {
+		a.Set(i, uint64(i%8)) // Set value from [0, 7]
+	}
 
-for i := range y.Len() {
-	fmt.Println(y.At(i))
+	fmt.Printf("stored %d values in %d bytes\n", a.Len(), a.Size())
+	fmt.Printf("[]uint64 would need %d bytes\n", a.Len()*8)
 }
+```
+
+```text
+stored 1000 values in 376 bytes
+[]uint64 would need 8000 bytes
 ```
 
 For more examples see [example_test.go](/example_test)

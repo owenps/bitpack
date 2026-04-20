@@ -1,13 +1,15 @@
-package bitpack
+package bitpack_test
 
 import (
 	"math"
 	"strings"
 	"testing"
+
+	"github.com/owenps/bitpack"
 )
 
 func TestSetAndAt(t *testing.T) {
-	a := New(5, 3) // 5 elements, 3-bit values (max value = 7)
+	a := bitpack.New(5, 3) // 5 elements, 3-bit values (max value = 7)
 
 	values := []uint64{0, 7, 3, 5, 1}
 	for i, v := range values {
@@ -23,7 +25,7 @@ func TestSetAndAt(t *testing.T) {
 }
 
 func TestLenAndBitWidth(t *testing.T) {
-	a := New(100, 4)
+	a := bitpack.New(100, 4)
 
 	if a.Len() != 100 {
 		t.Errorf("Len() = %d, want 100", a.Len())
@@ -35,20 +37,20 @@ func TestLenAndBitWidth(t *testing.T) {
 
 func TestSize(t *testing.T) {
 	// 3-bit values × 100 elements = 300 bits = 4.69 uint64s → 5 uint64s = 40 bytes
-	a := New(100, 3)
+	a := bitpack.New(100, 3)
 	if a.Size() != 40 {
 		t.Errorf("Size() = %d, want 40", a.Size())
 	}
 
 	// 64-bit values × 10 elements = 640 bits = 10 uint64s = 80 bytes
-	b := New(10, 64)
+	b := bitpack.New(10, 64)
 	if b.Size() != 80 {
 		t.Errorf("Size() = %d, want 80", b.Size())
 	}
 }
 
 func TestZeroWidth(t *testing.T) {
-	a := New(5, 0)
+	a := bitpack.New(5, 0)
 
 	if a.Len() != 5 {
 		t.Errorf("Len() = %d, want 5", a.Len())
@@ -73,7 +75,7 @@ func TestZeroWidth(t *testing.T) {
 func TestCrossingWordBoundary(t *testing.T) {
 	// 5-bit values: 64/5 = 12 values per uint64 with 4 bits left over.
 	// The 13th value straddles two uint64s.
-	a := New(20, 5)
+	a := bitpack.New(20, 5)
 
 	for i := range 20 {
 		a.Set(i, uint64(i%32)) // max 5-bit value = 31
@@ -91,7 +93,7 @@ func TestCrossingWordBoundary(t *testing.T) {
 func TestCrossSlotBitPatterns(t *testing.T) {
 	// Index 12 at width 5 straddles slots 0 and 1. Patterns are chosen so
 	// the low and high halves of the value are distinguishable.
-	a := New(20, 5)
+	a := bitpack.New(20, 5)
 	const straddle = 12
 
 	patterns := []uint64{
@@ -123,5 +125,5 @@ func TestNewPanicsOnSizeOverflow(t *testing.T) {
 			t.Errorf("panic = %v, want bitpack:-prefixed string", r)
 		}
 	}()
-	New(math.MaxInt, 64)
+	bitpack.New(math.MaxInt, 64)
 }
