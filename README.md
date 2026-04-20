@@ -29,12 +29,14 @@ func main() {
 	}
 
 	fmt.Printf("stored %d values in %d bytes\n", a.Len(), a.Size())
+	fmt.Printf("[]uint8  would need %d bytes\n", a.Len()*1)
 	fmt.Printf("[]uint64 would need %d bytes\n", a.Len()*8)
 }
 ```
 
 ```text
 stored 1000 values in 376 bytes
+[]uint8  would need 1000 bytes
 []uint64 would need 8000 bytes
 ```
 
