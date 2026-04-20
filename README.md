@@ -48,7 +48,7 @@ Run `go test -bench=. -benchmem` to measure on your own machine.
 ## Installation
 
 ```bash
-go get github.com/owenps/bitpack 
+go get github.com/owenps/bitpack
 ```
 
 ## Road Map
