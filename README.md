@@ -1,4 +1,4 @@
-# bitpack ⚡︎
+# bitpack ⚛︎
 
 [![CI](https://github.com/owenps/bitpack/actions/workflows/test.yml/badge.svg)](https://github.com/owenps/bitpack/actions/workflows/test.yml)
 [![Version](https://img.shields.io/github/v/release/owenps/bitpack)](https://github.com/owenps/bitpack/releases)
@@ -7,9 +7,6 @@
 [![License](https://img.shields.io/github/license/owenps/bitpack)](/LICENSE)
 
 A miniature Go library for compact arrays.
-
-> [!NOTE]
-> Read more of my developer notes from [my blog](https://owenps.github.io/blog).
 
 ## Usage
 
