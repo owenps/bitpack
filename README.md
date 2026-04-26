@@ -73,7 +73,7 @@ go get github.com/owenps/bitpack
 - [ ] `Iter()` method - return an iterator that can hold the current slot in a register and decode multiple values from it before reloading. Can offer significant speed-ups to using for-loop with `At`.
 
 [`v0.2.0`](releases/tag/v0.2.0)
-- [x] `FromSlice()` method - automatically calculate the width from a slice. (`v0.2.0`+)
+- [x] `FromSlice()` method - automatically calculate the width from a slice.
 - [x] `ToSlice()` method - mirrors `FromSlice()`.
 
 [`v0.1.1`](releases/tag/v0.2.0)
