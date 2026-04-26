@@ -117,9 +117,17 @@ func (a *Array) Fill(value uint64) {
 		return
 	}
 
-	// Temporary implementation; can be optimized.
-	for i := range a.Len() {
-		a.Set(i, value)
+	stamp := value
+	shift := a.width
+	for shift < 64 {
+		stamp = (stamp << shift) | stamp
+		shift = shift * 2
+	}
+
+	rotate := 64 % a.width
+	for i := range len(a.data) {
+		a.data[i] = stamp
+		stamp = (stamp << rotate) | (stamp >> (64 - rotate))
 	}
 }
 
