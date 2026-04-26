@@ -21,9 +21,9 @@ import (
 func main() {
 	values := make([]uint64, 1000)
 	for i := range values {
-  	values[i] = uint64(i % 8)
-  }
-  a := bitpack.FromSlice(values)
+		values[i] = uint64(i % 8)
+	}
+	a := bitpack.FromSlice(values)
 
 	fmt.Printf("stored %d values in %d bytes\n", a.Len(), a.Size())
 	fmt.Printf("[]uint8  would need %d bytes\n", a.Len()*1)
