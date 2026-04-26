@@ -80,7 +80,7 @@ go get github.com/owenps/bitpack
 - [x] `ToSlice()` method - mirrors `FromSlice()`.
 
 [`v0.1.1`](releases/tag/v0.2.0)
-- [x] `Fill()` method optimizations - Now up to ~500x faster than `Set()` loop. [`v0.1.1`+](releases/tag/v0.1.1)
+- [x] `Fill()` method optimizations - Now up to ~500x faster than `Set()` loop.
 
 ## License
 
