@@ -6,7 +6,10 @@
 // for narrower values.
 package bitpack
 
-import "math"
+import (
+	"math"
+	"math/bits"
+)
 
 // Array is a packed array of fixed-width bit sequences.
 //
@@ -45,6 +48,19 @@ func New(n, bitWidth int) *Array {
 		mask:  ^uint64(0) >> (64 - bitWidth),
 		size:  n,
 	}
+}
+
+// FromSlice creates a packed array from a slice of uint64 values.
+func FromSlice(slice []uint64) *Array {
+	bitWidth := 0
+	for _, v := range slice {
+		bitWidth = max(bitWidth, bits.Len64(v))
+	}
+	a := New(len(slice), bitWidth)
+	for i, v := range slice {
+		a.Set(i, v)
+	}
+	return a
 }
 
 // Set stores a value at the given index.
@@ -152,6 +168,15 @@ func (a *Array) BitWidth() int {
 // Size returns the number of bytes used by the underlying storage.
 func (a *Array) Size() int {
 	return len(a.data) * 8
+}
+
+// ToSlice returns the unpacked values as a slice of uint64.
+func (a *Array) ToSlice() []uint64 {
+	slice := make([]uint64, a.size)
+	for i := range slice {
+		slice[i] = a.At(i)
+	}
+	return slice
 }
 
 // gcd returns the greatest common divisor of two integers.

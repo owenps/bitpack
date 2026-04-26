@@ -8,6 +8,42 @@ import (
 	"github.com/owenps/bitpack"
 )
 
+func TestFromSliceAndToSlice(t *testing.T) {
+	slice := []uint64{0, 7, 3, 5, 1}
+	a := bitpack.FromSlice(slice)
+
+	if a.Len() != len(slice) {
+		t.Errorf("Len() = %d, want %d", a.Len(), len(slice))
+	}
+	if a.BitWidth() != 3 {
+		t.Errorf("BitWidth() = %d, want 3", a.BitWidth())
+	}
+
+	slice2 := a.ToSlice()
+	if len(slice2) != len(slice) {
+		t.Errorf("ToSlice() length = %d, want %d", len(slice2), len(slice))
+	}
+	for i, v := range slice2 {
+		if v != slice[i] {
+			t.Errorf("ToSlice()[%d] = %d, want %d", i, v, slice[i])
+		}
+	}
+}
+
+func TestFromSliceAndToSliceEmpty(t *testing.T) {
+	a := bitpack.FromSlice([]uint64{})
+	if a.Len() != 0 {
+		t.Errorf("Len() = %d, want 0", a.Len())
+	}
+	if a.BitWidth() != 0 {
+		t.Errorf("BitWidth() = %d, want 0", a.BitWidth())
+	}
+	slice2 := a.ToSlice()
+	if len(slice2) != 0 {
+		t.Errorf("ToSlice() length = %d, want 0", len(slice2))
+	}
+}
+
 func TestSetAndAt(t *testing.T) {
 	a := bitpack.New(5, 3) // 5 elements, 3-bit values (max value = 7)
 

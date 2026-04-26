@@ -40,6 +40,8 @@ stored 1000 values in 376 bytes
 []uint64 would need 8000 bytes
 ```
 
+That is **21x smaller than `[]uint64`, and 2.7x smaller than `[]uint8`**.
+
 For more examples see [example_test.go](/example_test.go)
 
 ![Memory savings by bit width](savings.svg)
@@ -50,6 +52,17 @@ All operations run in constant time with zero allocations.
 Single-digit nanoseconds per `Set`/`At` call on modern hardware.
 Run `go test -bench=. -benchmem` to measure on your own machine.
 
+| Operation  | Width | ns/op  | Allocs |
+|------------|-------|-------:|--------|
+| `Set`      | 3     |   1.71 | 0      |
+| `Set`      | 64    |   1.28 | 0      |
+| `At`       | 3     |   1.36 | 0      |
+| `At`       | 64    |   1.04 | 0      |
+| `Fill`     | 3     |    208 | 0      |
+| `Set` loop | 3     | 105743 | 0      |
+
+> Apple M5, Go 1.26. `Fill` / `Set` loop benchmark uses 1M elements.
+
 ## Installation
 
 ```bash
@@ -58,8 +71,8 @@ go get github.com/owenps/bitpack
 
 ## Road Map
 
-- [ ] `FromSlice()` method - automatically calculate the width from a slice.
-- [ ] `ToSlice()` method - mirrors `FromSlice()`.
+- [x] `FromSlice()` method - automatically calculate the width from a slice.
+- [x] `ToSlice()` method - mirrors `FromSlice()`.
 - [ ] Generics support - support other envelopes other than `uint64`. (`uint8`, `uint32`, `uint`)
 - [x] `Fill()` method optimizations - Now up to ~500x faster than `Set()` loop.
 - [ ] `SetRange()` method - set a range of indices to a given value.
