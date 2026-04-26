@@ -117,6 +117,7 @@ func (a *Array) Fill(value uint64) {
 		return
 	}
 
+	// Precompute a repeated pattern of the value for filling the array.
 	stamp := value
 	shift := a.width
 	for shift < 64 {
@@ -125,9 +126,16 @@ func (a *Array) Fill(value uint64) {
 	}
 
 	rotate := 64 % a.width
-	for i := range len(a.data) {
+	period := min(a.width/gcd(a.width, rotate), uint(len(a.data)))
+	for i := range period {
 		a.data[i] = stamp
 		stamp = (stamp << rotate) | (stamp >> (64 - rotate))
+	}
+
+	filled := period
+	for filled < uint(len(a.data)) {
+		copy(a.data[filled:], a.data[:filled])
+		filled *= 2
 	}
 }
 
@@ -144,4 +152,12 @@ func (a *Array) BitWidth() int {
 // Size returns the number of bytes used by the underlying storage.
 func (a *Array) Size() int {
 	return len(a.data) * 8
+}
+
+// gcd returns the greatest common divisor of two integers.
+func gcd(a, b uint) uint {
+	if b == 0 {
+		return a
+	}
+	return gcd(b, a%b)
 }
